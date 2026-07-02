@@ -96,7 +96,7 @@ const chapters = [
   {
     id: 5,
     icon: '🎁',
-    title: 'Happy Birthday Elina!!',
+    title: 'Happy Birthday!!',
     body: [
       'To be honest, I am really grateful that I met you. Sobrang out of the blue na nagkita tayo at random places at random moments and yet it is easy to enjoy your company. I do not want to elaborate but it helped me become better, strive harder, and go outside of the box for once. You make people feel special and for that, you yourself are special. I hope you have a great birthday and I hope we meet again soon!',
     ],
@@ -279,7 +279,7 @@ function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                Happy Birthday {RECIPIENT_DISPLAY}!!
+                Happy Birthday!!
               </motion.h1>
               <p className="hero-copy">
                 Read each chapter in order, or visit any one you&apos;ve already opened again.
