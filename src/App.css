@@ -1,0 +1,456 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #fff;
+  color: #2a0f16;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffe9f0 0%, #ffd6e1 36%, #ffffff 100%);
+}
+
+.page-shell {
+  min-height: 100vh;
+  position: relative;
+  padding: 32px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.glow-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.65) 0%, transparent 18%),
+    radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.55) 0%, transparent 16%),
+    linear-gradient(135deg, rgba(255, 196, 210, 0.12), transparent 35%, rgba(255, 167, 191, 0.05));
+}
+
+/* ---------- floating hearts ---------- */
+.hearts-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  color: #ff6e9d;
+  animation-name: floatUp;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(20px) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- shell ---------- */
+.content-card {
+  width: min(1000px, 100%);
+  position: relative;
+  z-index: 1;
+  border-radius: 38px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 32px 90px rgba(187, 53, 108, 0.14);
+  padding: 32px;
+  backdrop-filter: blur(18px);
+}
+
+/* ---------- envelope gate ---------- */
+.envelope-gate {
+  display: flex;
+  justify-content: center;
+  padding: 40px 8px;
+}
+
+.envelope {
+  max-width: 480px;
+  text-align: center;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.envelope-seal {
+  font-size: 3rem;
+}
+
+.envelope h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: #48021c;
+}
+
+.hint-text {
+  margin: 0;
+  color: #c23a5c;
+  font-size: 0.9rem;
+}
+
+/* ---------- hero ---------- */
+.hero-panel {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 145, 178, 0.18);
+}
+
+.hero-panel h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #48021c;
+}
+
+.hero-copy {
+  margin: 0;
+  font-size: 1rem;
+  color: #6e2436;
+  max-width: 680px;
+}
+
+.name-box {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.name-box input {
+  width: min(320px, 100%);
+  border: 1px solid rgba(255, 107, 141, 0.38);
+  border-radius: 18px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  color: #4a1725;
+  background: #fff;
+}
+
+.name-box button {
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ff8fab, #ff5c7f);
+  color: white;
+  padding: 14px 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- table of contents ---------- */
+.toc {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+
+.toc-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 133, 161, 0.4);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 10px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toc-chip:not(.locked):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(212, 49, 108, 0.14);
+}
+
+.toc-chip.active {
+  background: linear-gradient(135deg, #ff8fab, #ff5c7f);
+  border-color: transparent;
+}
+
+.toc-chip.active .toc-label,
+.toc-chip.active .toc-icon {
+  color: white;
+}
+
+.toc-chip.locked {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.toc-icon {
+  font-size: 1.1rem;
+}
+
+.toc-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b2032;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.toc-label em {
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #7b3750;
+}
+
+.toc-chip.active .toc-label em {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- chapter card ---------- */
+.chapter-card {
+  position: relative;
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(255, 241, 245, 0.95), rgba(255, 214, 229, 0.95));
+  padding: 28px;
+  border: 1px solid rgba(255, 201, 219, 0.56);
+  overflow: hidden;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+.chapter-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff5c7f;
+  margin-bottom: 6px;
+}
+
+.chapter-text h2 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  color: #43131f;
+}
+
+.chapter-text p {
+  margin: 0 0 12px;
+  color: #6b2538;
+  line-height: 1.7;
+}
+
+.secret-toggle {
+  border: 1px dashed rgba(255, 110, 157, 0.55);
+  background: rgba(255, 255, 255, 0.6);
+  color: #b02a52;
+  padding: 8px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.secret-text {
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.75);
+  border-left: 3px solid #ff6e9d;
+  border-radius: 8px;
+  color: #6b2538;
+  font-style: italic;
+  overflow: hidden;
+}
+
+/* ---------- photo frame ---------- */
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 16px 30px rgba(212, 49, 108, 0.16);
+  border: 1px solid rgba(255, 133, 161, 0.4);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 110, 157, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #b02a52;
+  text-align: center;
+  padding: 16px;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255, 214, 229, 0.4),
+    rgba(255, 214, 229, 0.4) 10px,
+    rgba(255, 236, 242, 0.4) 10px,
+    rgba(255, 236, 242, 0.4) 20px
+  );
+}
+
+.photo-icon {
+  font-size: 2rem;
+}
+
+.photo-caption {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ---------- controls ---------- */
+.chapter-controls {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.chapter-controls button {
+  border: none;
+  background: #fff;
+  color: #b02a52;
+  border: 1px solid rgba(255, 133, 161, 0.4);
+  padding: 12px 18px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.chapter-controls button.primary {
+  background: linear-gradient(135deg, #ff8fab, #ff5c7f);
+  color: white;
+  border: none;
+  margin-left: auto;
+}
+
+.chapter-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- finale ---------- */
+.finale-panel {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.gift-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #662d43;
+}
+
+.gift-list li {
+  margin-bottom: 8px;
+}
+
+.music-box {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 189, 211, 0.45);
+  display: grid;
+  gap: 12px;
+}
+
+.music-box h3 {
+  margin: 0;
+  color: #5a1c34;
+  font-size: 1rem;
+}
+
+.music-box audio {
+  width: 100%;
+  border-radius: 16px;
+}
+
+/* ---------- confetti ---------- */
+.confetti-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  animation-name: confettiFall;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(340px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 780px) {
+  .chapter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-frame {
+    aspect-ratio: 16 / 10;
+  }
+
+  .chapter-controls {
+    flex-wrap: wrap;
+  }
+}

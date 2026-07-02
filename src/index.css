@@ -1,0 +1,21 @@
+html, body, #root {
+  min-height: 100%;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+input:focus,
+button:focus {
+  outline: 2px solid rgba(255, 115, 149, 0.55);
+  outline-offset: 3px;
+}
